@@ -12,7 +12,7 @@
         "name": "Olympus Scanlation",
         "packageName": "eu.kanade.tachiyomi.extension.k1ns55.es.olympusscanlation",
         "resources": {
-          "apkUrl": "https://raw.githubusercontent.com/K1NS55/mihon-extensiones/repo/apk/tachiyomi-k1ns55.es.olympusscanlation-v1.6.0.apk",
+          "apkUrl": "https://raw.githubusercontent.com/K1NS55/mihon-extensiones/0e56f31d002d15300f52308ff8b61bfc304cd65e/apk/tachiyomi-k1ns55.es.olympusscanlation-v1.6.0.apk",
           "iconUrl": "https://raw.githubusercontent.com/K1NS55/mihon-extensiones/repo/icon/eu.kanade.tachiyomi.extension.k1ns55.es.olympusscanlation.png"
         },
         "extensionLib": "1.6",
@@ -33,7 +33,7 @@
         "name": "MangaDex",
         "packageName": "eu.kanade.tachiyomi.extension.k1ns55.all.mangadex",
         "resources": {
-          "apkUrl": "https://raw.githubusercontent.com/K1NS55/mihon-extensiones/repo/apk/tachiyomi-k1ns55.all.mangadex-v1.6.0.apk",
+          "apkUrl": "https://raw.githubusercontent.com/K1NS55/mihon-extensiones/0e56f31d002d15300f52308ff8b61bfc304cd65e/apk/tachiyomi-k1ns55.all.mangadex-v1.6.0.apk",
           "iconUrl": "https://raw.githubusercontent.com/K1NS55/mihon-extensiones/repo/icon/eu.kanade.tachiyomi.extension.k1ns55.all.mangadex.png"
         },
         "extensionLib": "1.6",
@@ -474,7 +474,7 @@
         "name": "ManhwaWeb",
         "packageName": "eu.kanade.tachiyomi.extension.k1ns55.es.manhwaweb",
         "resources": {
-          "apkUrl": "https://raw.githubusercontent.com/K1NS55/mihon-extensiones/repo/apk/tachiyomi-k1ns55.es.manhwaweb-v1.6.13.apk",
+          "apkUrl": "https://raw.githubusercontent.com/K1NS55/mihon-extensiones/0e56f31d002d15300f52308ff8b61bfc304cd65e/apk/tachiyomi-k1ns55.es.manhwaweb-v1.6.13.apk",
           "iconUrl": "https://raw.githubusercontent.com/K1NS55/mihon-extensiones/repo/icon/eu.kanade.tachiyomi.extension.k1ns55.es.manhwaweb.png"
         },
         "extensionLib": "1.6",
