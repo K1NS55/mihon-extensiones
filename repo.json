@@ -1,0 +1,9 @@
+{
+  "index_v2": "https://raw.githubusercontent.com/K1NS55/mihon-extensiones/repo/index.json",
+  "meta": {
+    "name": "Mihon extensiones de K1NS55",
+    "shortName": "K1NS55",
+    "website": "https://github.com/K1NS55/mihon-extensiones",
+    "signingKeyFingerprint": "a1cfdced847c7c2ed8699186337b5d36ad9afd4036e57ca72f385066f7332fde"
+  }
+}
