@@ -490,6 +490,27 @@
             "mirrorUrls": []
           }
         ]
+      },
+      {
+        "name": "LeerCapitulo",
+        "packageName": "eu.kanade.tachiyomi.extension.k1ns55.es.leercapitulo",
+        "resources": {
+          "apkUrl": "https://raw.githubusercontent.com/K1NS55/mihon-extensiones/repo/apk/tachiyomi-k1ns55.es.leercapitulo-v1.6.0.apk",
+          "iconUrl": "https://raw.githubusercontent.com/K1NS55/mihon-extensiones/repo/icon/eu.kanade.tachiyomi.extension.k1ns55.es.leercapitulo.png"
+        },
+        "extensionLib": "1.6",
+        "versionCode": "106000",
+        "versionName": "1.6.0",
+        "contentWarning": "CONTENT_WARNING_SAFE",
+        "sources": [
+          {
+            "id": "5621901596522308538",
+            "name": "LeerCapitulo",
+            "language": "es",
+            "homeUrl": "https://www.leercapitulo.co",
+            "mirrorUrls": []
+          }
+        ]
       }
     ]
   },
