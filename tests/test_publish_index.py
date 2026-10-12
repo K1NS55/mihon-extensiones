@@ -54,6 +54,13 @@ class IndexTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "depuración"):
                 self.generate()
 
+    def test_supports_https_apk_hosting(self):
+        with patch.object(publish, "run", side_effect=self.tools):
+            index = publish.generate(self.root, self.root / "out", Path("tools"), "v1",
+                                     apk_base_url="https://example.org/repo/apk")
+        for entry in index["extensionList"]["extensions"]:
+            self.assertTrue(entry["resources"]["apkUrl"].startswith("https://example.org/repo/apk/"))
+
     def test_rejects_missing_apk(self):
         next((self.root / "src").rglob("*.apk")).unlink()
         with patch.object(publish, "run", side_effect=self.tools):

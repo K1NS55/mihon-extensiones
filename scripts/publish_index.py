@@ -7,6 +7,7 @@ import re
 import shutil
 import subprocess
 from pathlib import Path
+from urllib.parse import urlsplit
 
 MODULES = ("es/olympusscanlation", "all/mangadex", "es/manhwaweb")
 REPOSITORY = "K1NS55/mihon-extensiones"
@@ -27,7 +28,7 @@ def check_version(entry, previous, fingerprint, identical=False):
                 raise ValueError(f"Incrementa versionCode de {entry['name']} antes de publicar")
 
 
-def generate(root, output, tools, tag, previous=None, previous_dir=None):
+def generate(root, output, tools, tag, previous=None, previous_dir=None, apk_base_url=None):
     if not re.fullmatch(r"[A-Za-z0-9._-]+", tag):
         raise ValueError("Tag inválido")
     if not 1 <= len(MODULES) <= 10:
@@ -37,6 +38,11 @@ def generate(root, output, tools, tag, previous=None, previous_dir=None):
     entries, assets, fingerprints, legacy = [], [], set(), []
     base = f"https://raw.githubusercontent.com/{REPOSITORY}/repo"
     release = f"https://github.com/{REPOSITORY}/releases/download/{tag}"
+    if apk_base_url:
+        parsed = urlsplit(apk_base_url)
+        if parsed.scheme != "https" or not parsed.netloc or parsed.query or parsed.fragment:
+            raise ValueError("La base de APK debe ser una URL HTTPS sin query ni fragmento")
+        release = apk_base_url.rstrip("/")
     for module in MODULES:
         build = root / "src" / module / "build"
         info = json.loads((build / "keiyoushi-source-info.json").read_text())
@@ -114,8 +120,9 @@ if __name__ == "__main__":
     parser.add_argument("--build-tools", type=Path, required=True)
     parser.add_argument("--tag", required=True)
     parser.add_argument("--previous", type=Path)
+    parser.add_argument("--apk-base-url", help="Alojamiento HTTPS alternativo para los APK, por ejemplo una rama Git")
     args = parser.parse_args()
     previous = json.loads(args.previous.read_text()) if args.previous else None
     result = generate(args.root, args.output, args.build_tools, args.tag, previous,
-                      args.previous.parent if args.previous else None)
+                      args.previous.parent if args.previous else None, args.apk_base_url)
     print(f"Índice validado: {len(result['extensionList']['extensions'])} extensiones")

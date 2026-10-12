@@ -7,7 +7,7 @@ El formato del índice y la API 1.6 se contrastaron con Mihon estable **v0.21.0*
 
 - Los tres módulos completaron `assembleRelease` y `lintRelease`.
 - `core:testDebugUnitTest`: **6 pruebas ejecutadas, 0 fallos, 0 omitidas**.
-- Publicador Python: **6 pruebas ejecutadas, 0 fallos**. Son pruebas de las reglas de
+- Publicador Python: **7 pruebas ejecutadas, 0 fallos**. Son pruebas de las reglas de
   publicación con fixtures; no sustituyen la comprobación real de APK.
 - Los APK de publicación se compilaron con la misma clave RSA de 4096 bits.
 - El publicador ejecuta `apksigner verify --verbose --print-certs` y `aapt dump badging`
@@ -53,3 +53,20 @@ pero la API de secretos devolvió `403 Resource not accessible by integration`.
 Se solicitó ampliar el permiso de Secrets. Mientras no se almacenen `SIGNING_KEY` y
 `KEY_STORE_PASSWORD` en Actions, las publicaciones automáticas firmadas no pueden completarse.
 La clave inicial permanece privada fuera del checkout y no forma parte del código ni de los APK.
+
+## Distribución publicada
+
+La versión [v1.0.0](https://github.com/K1NS55/mihon-extensiones/releases/tag/v1.0.0)
+está publicada. Sus enlaces descargan los APK desde una revisión inmutable de la rama
+de distribución. Se descargaron los tres archivos sin autenticación y se comprobaron
+sus hashes SHA-256 y firmas. El índice público se contrastó con el índice local y se
+validó también contra el esquema Protobuf de índices de Keiyoushi/Mihon.
+
+La credencial Cloud rechazó la subida de adjuntos a `uploads.github.com` con 401;
+por eso la primera release enlaza APK alojados en Git. La instalación desde Mihon
+utiliza las URLs absolutas del índice y no depende de adjuntos de Releases.
+
+El primer workflow de GitHub Actions falló porque el runner no traía `sdkmanager`.
+Se añadió un instalador explícito con versión y SHA-256 fijados. El resultado de
+los workflows remotos se puede consultar en la pestaña Actions; las pruebas locales
+anteriores no se presentan como ejecuciones exitosas de CI.
