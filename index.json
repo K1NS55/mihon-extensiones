@@ -516,7 +516,7 @@
         "name": "Imperio Manhwa",
         "packageName": "eu.kanade.tachiyomi.extension.k1ns55.es.imperiomanhwa",
         "resources": {
-          "apkUrl": "https://raw.githubusercontent.com/K1NS55/mihon-extensiones/repo/apk/tachiyomi-k1ns55.es.imperiomanhwa-v1.6.0.apk",
+          "apkUrl": "https://raw.githubusercontent.com/K1NS55/mihon-extensiones/ec8a37d7148ee011dbea6309356ba97131535a16/apk/tachiyomi-k1ns55.es.imperiomanhwa-v1.6.0.apk",
           "iconUrl": "https://raw.githubusercontent.com/K1NS55/mihon-extensiones/repo/icon/eu.kanade.tachiyomi.extension.k1ns55.es.imperiomanhwa.png"
         },
         "extensionLib": "1.6",
