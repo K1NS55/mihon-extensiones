@@ -7,6 +7,7 @@ Repositorio de **K1NS55**, limitado a un máximo de diez extensiones. Incluye ú
 | Olympus Scanlation | https://olympusxyz.com/ | Español |
 | MangaDex | https://mangadex.org/ | Multilingüe, incluidos español y español latinoamericano |
 | ManhwaWeb | https://manhwaweb.com/ | Español; algunas obras ofrecen capítulos RAW |
+| LeerCapitulo | https://www.leercapitulo.co/ | Español |
 
 Código adaptado de [Keiyoushi](https://github.com/keiyoushi/extensions-source),
 commit `53a6f21bb143649751632667cafa0eff413ae487`, con licencia Apache-2.0.
@@ -57,6 +58,7 @@ bash scripts/build.sh
 ./gradlew --no-daemon --max-workers=4 :core:testDebugUnitTest :core:lintRelease :lib:i18n:lintRelease
 python3 -m unittest discover -s tests -v
 python3 scripts/smoke_sources.py
+/workspace/.venvs/mihon-smoke/bin/python scripts/smoke_html_sources.py leercapitulo
 ```
 
 Para recompilar solamente una extensión modificada:
@@ -72,7 +74,7 @@ El formateo se comprueba durante la compilación; no se reescriben fuentes autom
 
 ## Publicaciones y actualizaciones
 
-GitHub Actions valida las tres extensiones, ejecuta pruebas y lint, y publica en cada push
+GitHub Actions valida las extensiones seleccionadas, ejecuta pruebas y lint, y publica en cada push
 a `main` que cambie código o configuración, o ejecución manual del workflow. Las cachés de Gradle reutilizan las tareas sin cambios.
 Las pull requests solo validan; no reciben la clave de firma.
 

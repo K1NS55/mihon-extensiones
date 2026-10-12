@@ -9,7 +9,7 @@ import subprocess
 from pathlib import Path
 from urllib.parse import urlsplit
 
-MODULES = ("es/olympusscanlation", "all/mangadex", "es/manhwaweb")
+MODULES = ("es/olympusscanlation", "all/mangadex", "es/manhwaweb", "es/leercapitulo")
 REPOSITORY = "K1NS55/mihon-extensiones"
 
 
@@ -84,6 +84,11 @@ def generate(root, output, tools, tag, previous=None, previous_dir=None, apk_bas
             identical = bool(old_apk and old_apk.is_file() and
                              hashlib.sha256(old_apk.read_bytes()).digest() == hashlib.sha256(apk.read_bytes()).digest())
             check_version(entry, previous, digest[0].lower(), identical)
+            if identical:
+                old_entry = next((old for old in previous["extensionList"]["extensions"]
+                                  if old["packageName"] == entry["packageName"]), None)
+                if old_entry:
+                    entry["resources"]["apkUrl"] = old_entry["resources"]["apkUrl"]
         entries.append(entry)
         legacy.append({"name": "Tachiyomi: " + info["name"], "pkg": info["packageName"],
                        "apk": apk.name, "lang": "all" if len(info["sources"]) > 1 else info["sources"][0]["lang"],

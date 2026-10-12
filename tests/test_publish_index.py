@@ -41,12 +41,12 @@ class IndexTests(unittest.TestCase):
     def generate(self):
         return publish.generate(self.root, self.root / "out", Path("tools"), "build-1")
 
-    def test_generates_three_entries_and_preserves_long_source_ids(self):
+    def test_generates_selected_entries_and_preserves_long_source_ids(self):
         with patch.object(publish, "run", side_effect=self.tools):
             result = self.generate()
-        self.assertEqual(3, len(result["extensionList"]["extensions"]))
+        self.assertEqual(len(publish.MODULES), len(result["extensionList"]["extensions"]))
         self.assertEqual("9123456789012345678", result["extensionList"]["extensions"][0]["sources"][0]["id"])
-        self.assertEqual(3, len(list((self.root / "out/apk").glob("*.apk"))))
+        self.assertEqual(len(publish.MODULES), len(list((self.root / "out/apk").glob("*.apk"))))
         self.assertTrue((self.root / "out/repo.json").is_file())
 
     def test_rejects_debug_signature(self):
@@ -66,6 +66,15 @@ class IndexTests(unittest.TestCase):
         with patch.object(publish, "run", side_effect=self.tools):
             with self.assertRaisesRegex(ValueError, "exactamente un APK"):
                 self.generate()
+
+    def test_preserves_urls_for_identical_previously_published_apks(self):
+        with patch.object(publish, "run", side_effect=self.tools):
+            previous = self.generate()
+            result = publish.generate(self.root, self.root / "next", Path("tools"), "build-2",
+                                      previous=previous, previous_dir=self.root / "out")
+        old_urls = [e["resources"]["apkUrl"] for e in previous["extensionList"]["extensions"]]
+        new_urls = [e["resources"]["apkUrl"] for e in result["extensionList"]["extensions"]]
+        self.assertEqual(old_urls, new_urls)
 
     def test_rejects_metadata_mismatch(self):
         def wrong(*args):

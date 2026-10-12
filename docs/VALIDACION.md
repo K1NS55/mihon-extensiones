@@ -92,3 +92,30 @@ El workflow ahora comprueba los secretos antes de instalar herramientas para pub
 ignora cambios exclusivamente documentales y detiene la publicación si no puede consultar
 el índice anterior. La subida de la rama `repo` se probó usando el checkout autenticado y
 un índice Git temporal, sin modificar los archivos ni el índice de trabajo de `main`.
+
+## Confirmación posterior en Mihon por el propietario
+
+El usuario confirmó que Olympus, MangaDex y ManhwaWeb cargan correctamente en su
+aplicación y permiten descargar capítulos. Esta es una prueba en el dispositivo
+informada por el usuario; los resultados y bloqueos de los sondeos Cloud anteriores
+se conservan como evidencia de aquel entorno, no como un fallo confirmado en su teléfono.
+
+## Incorporación de Leer Capítulo
+
+Se incorporó la implementación mantenida de Keiyoushi para `https://www.leercapitulo.co`,
+con paquete personal `eu.kanade.tachiyomi.extension.k1ns55.es.leercapitulo` y API 1.6.
+La compilación `assembleRelease` y `lintRelease` terminaron correctamente. El APK se
+firmó con el certificado original del repositorio, sin regenerar la clave.
+
+La muestra HTTP confirmó populares, actualizaciones, búsqueda por título, ficha,
+390 capítulos y 7 URLs de imágenes; la primera imagen respondió con contenido de imagen.
+Informe: [HTTP_LEERCAPITULO.json](HTTP_LEERCAPITULO.json). La prueba de esta nueva
+extensión dentro de Mihon queda pendiente de confirmación del usuario.
+
+Las 8 pruebas del publicador pasaron. Se añadió una comprobación que conserva las
+URLs de APK ya publicados cuando sus bytes y versión permanecen idénticos.
+Olympus, MangaDex y ManhwaWeb mantienen sus APK, versiones, firma y enlaces previos.
+
+Imperio Manga fue solicitado, pero aún no se incorporó: el entorno no pudo acceder
+a `https://imperiomanga.com` y no se encontró una implementación mantenida con ese nombre.
+Se solicitó al usuario confirmar la URL exacta antes de implementar la fuente.

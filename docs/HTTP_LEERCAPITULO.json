@@ -1,0 +1,22 @@
+{
+  "timestamp_utc": "2026-10-12T03:30:07.995838+00:00",
+  "scope": "Muestra HTTP y selectores HTML; no ejecuta APK ni Mihon",
+  "sources": {
+    "leercapitulo": {
+      "status": "passed_http_sample",
+      "checks_passed": [
+        "dominio y portada",
+        "catálogo popular",
+        "últimas actualizaciones",
+        "búsqueda por título",
+        "ficha",
+        "lista de 390 capítulos",
+        "lector del capítulo",
+        "extracción de 7 URLs de imágenes",
+        "solicitud de primera imagen",
+        "primera imagen con tipo de contenido válido"
+      ],
+      "observations": []
+    }
+  }
+}

@@ -31,7 +31,7 @@ jobs:
         run: bash scripts/setup-android.sh "$RUNNER_TEMP/android-sdk"
       - name: Probar publicador
         run: python3 -m unittest discover -s tests -v
-      - name: Compilar y analizar las tres extensiones
+      - name: Compilar y analizar las extensiones seleccionadas
         run: bash scripts/build.sh
       - name: Pruebas y análisis de bibliotecas compartidas
         run: ./gradlew --no-daemon --max-workers=4 :core:testDebugUnitTest :core:lintRelease :lib:i18n:lintRelease

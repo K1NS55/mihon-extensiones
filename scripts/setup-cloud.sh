@@ -52,5 +52,7 @@ yes | sdkmanager --sdk_root="$ANDROID_HOME" --licenses >/workspace/downloads/lic
 set -o pipefail
 sdkmanager --sdk_root="$ANDROID_HOME" 'platforms;android-37.0' 'build-tools;36.0.0' 'build-tools;37.0.0' 'platform-tools'
 cd "$repo"
+python3 -m venv /workspace/.venvs/mihon-smoke
+/workspace/.venvs/mihon-smoke/bin/pip install --disable-pip-version-check -r scripts/requirements-smoke.txt
 ./gradlew --version
 python3 -m unittest discover -s tests -v
