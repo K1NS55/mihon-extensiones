@@ -1,0 +1,17 @@
+{
+  "timestamp_utc": "2026-10-12T10:30:44.142668+00:00",
+  "scope": "HTTP y JavaScript del lector en Chromium; no ejecuta el APK ni Android WebView",
+  "status": "passed_live_sample",
+  "checks_passed": [
+    "/mejores-manhwas-2026/",
+    "/mejores-manhwas-2026/page/2/",
+    "/manga/",
+    "/manga/page/2/",
+    "búsqueda por título",
+    "ficha y 100 capítulos sin duplicados",
+    "lector JavaScript: 10 imágenes completas",
+    "descarga de imagen 1: 73738 bytes",
+    "descarga de imagen 2: 766170 bytes",
+    "descarga de imagen 10: 73738 bytes"
+  ]
+}

@@ -8,9 +8,13 @@ Repositorio de **K1NS55**, limitado a un máximo de diez extensiones. Incluye ú
 | MangaDex | https://mangadex.org/ | Multilingüe, incluidos español y español latinoamericano |
 | ManhwaWeb | https://manhwaweb.com/ | Español; algunas obras ofrecen capítulos RAW |
 | LeerCapitulo | https://www.leercapitulo.co/ | Español |
+| Imperio Manhwa | https://imperiomanhwa.com/ | Español |
 
-Código adaptado de [Keiyoushi](https://github.com/keiyoushi/extensions-source),
+Las primeras cuatro fuentes usan código adaptado de [Keiyoushi](https://github.com/keiyoushi/extensions-source),
 commit `53a6f21bb143649751632667cafa0eff413ae487`, con licencia Apache-2.0.
+Imperio Manhwa es una integración propia basada en el sitio actual; utiliza Android WebView
+para cargar todas las imágenes del lector. Mantén Android System WebView actualizado.
+Los capítulos restringidos por el sitio requieren el acceso correspondiente.
 Consulta [NOTICE](NOTICE) y [LICENSE](LICENSE). No es un repositorio oficial de Mihon ni de los sitios.
 
 ## Instalar en Mihon

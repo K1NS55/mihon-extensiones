@@ -27,6 +27,7 @@ val extensions = listOf(
     ":src:es:olympusscanlation",
     ":src:es:manhwaweb",
     ":src:es:leercapitulo",
+    ":src:es:imperiomanhwa",
 )
 check(extensions.size <= 10) { "Este repositorio admite como máximo 10 extensiones" }
 include(*extensions.toTypedArray())

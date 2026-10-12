@@ -116,6 +116,32 @@ Las 8 pruebas del publicador pasaron. Se añadió una comprobación que conserva
 URLs de APK ya publicados cuando sus bytes y versión permanecen idénticos.
 Olympus, MangaDex y ManhwaWeb mantienen sus APK, versiones, firma y enlaces previos.
 
-Imperio Manga fue solicitado, pero aún no se incorporó: el entorno no pudo acceder
-a `https://imperiomanga.com` y no se encontró una implementación mantenida con ese nombre.
-Se solicitó al usuario confirmar la URL exacta antes de implementar la fuente.
+## Incorporación de Imperio Manhwa
+
+El usuario confirmó `https://imperiomanhwa.com/` y activó el acceso de red.
+Se implementó una fuente propia con catálogo, populares, búsqueda, ficha y todos
+los capítulos paginados. El lector inicial solo contiene una imagen: Android
+WebView ejecuta el JavaScript del sitio y espera a tener las URLs de todas las
+imágenes indicadas por `total`, evitando publicar capítulos incompletos.
+Los capítulos restringidos muestran un error de acceso; no se modifica la
+protección del sitio. La carga del lector se serializa y tiene un límite de 60 segundos.
+
+`assembleRelease` y `lintRelease` pasaron; se usó la misma clave del repositorio.
+El sondeo reproducible es `scripts/smoke_imperiomanhwa.py`; necesita Chromium,
+Playwright 1.62.0 y las dependencias de `scripts/requirements-smoke.txt`.
+En este entorno se ejecuta con:
+
+```sh
+PYTHONPATH=/workspace/.venvs/mihon-smoke/lib/python3.12/site-packages python3 scripts/smoke_imperiomanhwa.py
+```
+
+El sondeo ejecuta exactamente el selector JavaScript incluido en la fuente dentro
+de Chromium. Las peticiones pasan por curl, que valida TLS con los certificados
+del sistema; no se desactiva la verificación TLS. Esta comprobación no sustituye
+una prueba del APK en Mihon/Android WebView en el teléfono.
+
+Resultado: catálogo y populares con dos páginas, búsqueda, ficha y 100 capítulos
+sin duplicados; lector con 10 imágenes y descarga verificada de las imágenes 1, 2
+y 10. Informe: [HTTP_IMPERIOMANHWA.json](HTTP_IMPERIOMANHWA.json).
+Las 8 pruebas del publicador también pasaron. Los cuatro APK anteriores conservan
+sus versiones, bytes, firma y URLs de descarga.

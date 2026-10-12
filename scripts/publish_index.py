@@ -9,7 +9,7 @@ import subprocess
 from pathlib import Path
 from urllib.parse import urlsplit
 
-MODULES = ("es/olympusscanlation", "all/mangadex", "es/manhwaweb", "es/leercapitulo")
+MODULES = ("es/olympusscanlation", "all/mangadex", "es/manhwaweb", "es/leercapitulo", "es/imperiomanhwa")
 REPOSITORY = "K1NS55/mihon-extensiones"
 
 
