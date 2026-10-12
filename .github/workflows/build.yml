@@ -2,7 +2,9 @@ name: Compilar y publicar extensiones
 on:
   push:
     branches: [main]
+    paths-ignore: ['**.md', 'docs/**']
   pull_request:
+    paths-ignore: ['**.md', 'docs/**']
   workflow_dispatch:
 
 permissions:
@@ -55,6 +57,13 @@ jobs:
     env:
       RELEASE_TAG: build-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
+      - name: Comprobar secretos de firma
+        env:
+          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
+          KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+        run: |
+          : "${SIGNING_KEY:?Falta SIGNING_KEY en los secretos de GitHub Actions}"
+          : "${KEY_STORE_PASSWORD:?Falta KEY_STORE_PASSWORD en los secretos de GitHub Actions}"
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6
         with:
@@ -78,7 +87,8 @@ jobs:
         run: |
           set -euo pipefail
           previous=()
-          if git ls-remote --exit-code --heads origin repo > /dev/null; then
+          remote_head=$(git ls-remote --heads origin refs/heads/repo)
+          if [ -n "$remote_head" ]; then
             git fetch origin repo
             mkdir previous
             git archive FETCH_HEAD | tar -x -C previous

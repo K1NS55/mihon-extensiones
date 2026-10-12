@@ -73,7 +73,7 @@ El formateo se comprueba durante la compilación; no se reescriben fuentes autom
 ## Publicaciones y actualizaciones
 
 GitHub Actions valida las tres extensiones, ejecuta pruebas y lint, y publica en cada push
-a `main` o ejecución manual del workflow. Las cachés de Gradle reutilizan las tareas sin cambios.
+a `main` que cambie código o configuración, o ejecución manual del workflow. Las cachés de Gradle reutilizan las tareas sin cambios.
 Las pull requests solo validan; no reciben la clave de firma.
 
 Para modificar una fuente, cambia su código y aumenta `versionCode` en el `build.gradle.kts`

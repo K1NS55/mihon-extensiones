@@ -75,3 +75,20 @@ los workflows remotos se puede consultar en la pestaña Actions; las pruebas loc
 anteriores no se presentan como ejecuciones exitosas de CI.
 
 El último informe HTTP de esta sesión se conserva en [HTTP_RESULT.json](HTTP_RESULT.json).
+
+## Ejecuciones remotas y repetibilidad
+
+La ejecución [38197011137](https://github.com/K1NS55/mihon-extensiones/actions/runs/38197011137)
+completó correctamente el trabajo `verify`: compilación y lint de los tres APK, pruebas del
+publicador, pruebas y lint de las bibliotecas compartidas. El trabajo `publish` falló
+exclusivamente en `Cargar clave privada`: `SIGNING_KEY` y `KEY_STORE_PASSWORD` no están
+configurados. La API para administrar los secretos continúa respondiendo 403 a la integración.
+
+La recompilación local firmada reutilizó 241 de 248 tareas. El publicador aceptó los tres
+APK contra el índice de v1.0.0 sin cambiar las versiones: conservan exactamente los mismos
+bytes y certificados. No se han cambiado ni sustituido los APK publicados.
+
+El workflow ahora comprueba los secretos antes de instalar herramientas para publicar,
+ignora cambios exclusivamente documentales y detiene la publicación si no puede consultar
+el índice anterior. La subida de la rama `repo` se probó usando el checkout autenticado y
+un índice Git temporal, sin modificar los archivos ni el índice de trabajo de `main`.
