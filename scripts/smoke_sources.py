@@ -17,15 +17,20 @@ def require(value, message):
 
 
 class Probe:
-    def __init__(self):
+    def __init__(self, base_url):
         self.passed = []
         self.last_url = None
         self.observations = []
+        self.base_url = base_url
 
     def get(self, url, label, as_json=True):
         self.last_url = url
         time.sleep(1)
-        request = urllib.request.Request(url, headers={"User-Agent": "mihon-extensiones-connectivity-check/1.0"})
+        # KeiSource envía Referer y Origin del sitio también en las peticiones de imágenes.
+        request = urllib.request.Request(url, headers={
+            "User-Agent": "mihon-extensiones-connectivity-check/1.0",
+            "Referer": self.base_url + "/", "Origin": self.base_url,
+        })
         with urllib.request.urlopen(request, timeout=20) as response:
             if as_json:
                 body = response.read(16 * 1024 * 1024)
@@ -115,8 +120,10 @@ def manhwaweb(p):
 def main():
     report = {"timestamp_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
               "scope": "HTTP público; no ejecuta los APK ni Mihon", "sources": {}}
-    for name, check in [("Olympus", olympus), ("MangaDex", mangadex), ("ManhwaWeb", manhwaweb)]:
-        probe = Probe()
+    for name, base, check in [("Olympus", "https://olympusxyz.com", olympus),
+                              ("MangaDex", "https://mangadex.org", mangadex),
+                              ("ManhwaWeb", "https://manhwaweb.com", manhwaweb)]:
+        probe = Probe(base)
         try:
             check(probe)
             result = {"status": "passed_http_sample"}

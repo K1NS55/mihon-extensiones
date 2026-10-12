@@ -96,20 +96,9 @@ jobs:
       - name: Actualizar la rama de distribución
         run: |
           set -euo pipefail
-          cd dist
-          git init -b repo
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git remote add origin "https://github.com/$GITHUB_REPOSITORY.git"
-          # Heredar la autenticación de checkout sin copiar ni imprimir credenciales.
-          git config --local include.path "$GITHUB_WORKSPACE/.git/config"
-          if git ls-remote --exit-code --heads origin repo > /dev/null; then
-            git fetch origin repo
-            git reset --soft FETCH_HEAD
-          fi
-          git add .
-          git commit -m "Publicar $RELEASE_TAG"
-          git push origin HEAD:repo
+          bash scripts/publish-branch.sh dist
       - name: Eliminar clave del runner
         if: always()
         run: rm -f signingkey.jks

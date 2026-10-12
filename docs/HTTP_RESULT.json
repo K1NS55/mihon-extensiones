@@ -1,0 +1,58 @@
+{
+  "timestamp_utc": "2026-10-12T02:43:32.592886+00:00",
+  "scope": "HTTP público; no ejecuta los APK ni Mihon",
+  "sources": {
+    "Olympus": {
+      "status": "blocked_or_failed",
+      "reason": "HTTPError: HTTP Error 403: Forbidden",
+      "last_url": "https://media.imagesolymp.xyz/comics/8/133860/(CREDITOS-OLYMPUS-2026-184.webp",
+      "checks_passed": [
+        "dominio",
+        "catálogo de búsqueda",
+        "búsqueda por título en catálogo",
+        "populares",
+        "actualizaciones",
+        "ficha",
+        "primera página de capítulos",
+        "páginas del capítulo",
+        "extracción de 43 URLs de imágenes"
+      ],
+      "observations": []
+    },
+    "MangaDex": {
+      "status": "passed_http_sample",
+      "checks_passed": [
+        "dominio",
+        "populares",
+        "actualizaciones en español",
+        "URLs de imágenes",
+        "ficha",
+        "búsqueda por título",
+        "capítulos en español",
+        "extracción de 26 URLs de imágenes",
+        "solicitud de primera imagen",
+        "primera imagen con tipo de contenido válido"
+      ],
+      "observations": [
+        "Capítulo ec1fd638-1091-4412-918b-e2559db9954f: at-home devuelve 404; no está disponible",
+        "Capítulo f1b80f0b-c97e-4b93-97db-1a7acb2e41a0: at-home devuelve 404; no está disponible",
+        "Capítulo 5d07572e-12b4-498c-9807-f09034c0b5c0: at-home devuelve 404; no está disponible"
+      ]
+    },
+    "ManhwaWeb": {
+      "status": "passed_http_sample",
+      "checks_passed": [
+        "dominio",
+        "populares",
+        "actualizaciones",
+        "búsqueda por título",
+        "ficha y capítulos",
+        "páginas del capítulo",
+        "extracción de 16 URLs de imágenes",
+        "solicitud de primera imagen",
+        "primera imagen con tipo de contenido válido"
+      ],
+      "observations": []
+    }
+  }
+}

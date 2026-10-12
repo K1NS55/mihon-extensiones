@@ -25,10 +25,13 @@ El formato del índice y la API 1.6 se contrastaron con Mihon estable **v0.21.0*
 | MangaDex | Verificados en español | Verificados en una muestra | 26 URLs extraídas |
 | ManhwaWeb | Verificados | Verificados en una muestra | 16 URLs extraídas |
 
-La descarga de la primera imagen de cada muestra fue bloqueada por la política de red
-del entorno Cloud (`CONNECT 403`) al acceder a sus CDN. Los dominios necesarios se guardaron
-en la configuración del entorno. Esto no demuestra que los sitios rechacen la conexión desde
-Mihon: el rechazo ocurrió en el proxy del entorno, antes de llegar al servidor.
+Tras habilitar los dominios de los CDN y enviar las cabeceras `Referer`/`Origin` que
+utiliza `KeiSource`, **MangaDex y ManhwaWeb devolvieron la primera imagen de la muestra**
+con un tipo de contenido de imagen válido. Olympus devolvió HTTP 403 con el título
+`Attention Required! | Cloudflare` en su servidor de imágenes. No se intentó eludir ese bloqueo;
+la lectura completa de Olympus no queda verificada. La primera ronda también encontró
+bloqueos de política de red del entorno; esos resultados se distinguieron del bloqueo
+HTTP de Cloudflare confirmado en la última comprobación.
 
 Tres capítulos recientes de MangaDex devolvieron **404** en `/at-home/server` pese a aparecer
 en el catálogo. Otra muestra de 26 páginas sí devolvió el servidor y sus URLs. Los capítulos
@@ -70,3 +73,5 @@ El primer workflow de GitHub Actions falló porque el runner no traía `sdkmanag
 Se añadió un instalador explícito con versión y SHA-256 fijados. El resultado de
 los workflows remotos se puede consultar en la pestaña Actions; las pruebas locales
 anteriores no se presentan como ejecuciones exitosas de CI.
+
+El último informe HTTP de esta sesión se conserva en [HTTP_RESULT.json](HTTP_RESULT.json).
