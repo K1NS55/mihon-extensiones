@@ -474,12 +474,12 @@
         "name": "ManhwaWeb",
         "packageName": "eu.kanade.tachiyomi.extension.k1ns55.es.manhwaweb",
         "resources": {
-          "apkUrl": "https://raw.githubusercontent.com/K1NS55/mihon-extensiones/0e56f31d002d15300f52308ff8b61bfc304cd65e/apk/tachiyomi-k1ns55.es.manhwaweb-v1.6.13.apk",
+          "apkUrl": "https://raw.githubusercontent.com/K1NS55/mihon-extensiones/repo/apk/tachiyomi-k1ns55.es.manhwaweb-v1.6.14.apk",
           "iconUrl": "https://raw.githubusercontent.com/K1NS55/mihon-extensiones/repo/icon/eu.kanade.tachiyomi.extension.k1ns55.es.manhwaweb.png"
         },
         "extensionLib": "1.6",
-        "versionCode": "106013",
-        "versionName": "1.6.13",
+        "versionCode": "106014",
+        "versionName": "1.6.14",
         "contentWarning": "CONTENT_WARNING_MIXED",
         "sources": [
           {
