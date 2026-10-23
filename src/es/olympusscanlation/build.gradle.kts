@@ -7,7 +7,7 @@ plugins {
 keiyoushi {
     pkgName = "k1ns55.es.olympusscanlation"
     name = "Olympus Scanlation"
-    versionCode = 0
+    versionCode = 1
     contentWarning = ContentWarning.SAFE
     libVersion = "1.6"
 

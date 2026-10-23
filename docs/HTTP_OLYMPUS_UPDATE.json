@@ -1,0 +1,16 @@
+{
+  "status": "partial_http_sample",
+  "image_error": "Command '['curl', '-fsSL', '--max-time', '35', 'https://media.imagesolymp.xyz/comics/178/134693/000.webp']' returned non-zero exit status 22.",
+  "timestamp_utc": "2026-10-23T03:54:27.354065+00:00",
+  "scope": "HTTP y selectores; no ejecuta APK ni Mihon",
+  "checks_passed": [
+    "Catálogo y búsqueda: El Chetado (Overgeared), ID 178",
+    "Ficha de la obra guardada por ID",
+    "345 capítulos sin duplicados en 9 páginas; último 343",
+    "35 URLs de imágenes del capítulo 343"
+  ],
+  "observations": [
+    "El host panel devolvió HTTP 520; la API del dominio público devuelve los capítulos.",
+    "El CDN devolvió HTTP 403 también enviando Referer y Origin del dominio activo. No se verificó descarga de imágenes desde Cloud."
+  ]
+}

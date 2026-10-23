@@ -23,7 +23,7 @@ class Probe:
         self.observations = []
         self.base_url = base_url
 
-    def get(self, url, label, as_json=True):
+    def get(self, url, label, as_json=True, raw_html=False):
         self.last_url = url
         time.sleep(1)
         # KeiSource envía Referer y Origin del sitio también en las peticiones de imágenes.
@@ -32,7 +32,9 @@ class Probe:
             "Referer": self.base_url + "/", "Origin": self.base_url,
         })
         with urllib.request.urlopen(request, timeout=20) as response:
-            if as_json:
+            if raw_html:
+                value = response.read(16 * 1024 * 1024).decode("utf-8")
+            elif as_json:
                 body = response.read(16 * 1024 * 1024)
                 value = json.loads(body)
             else:
@@ -63,9 +65,12 @@ def olympus(p):
     require(p.get(base + "/api/new-chapters?page=1", "actualizaciones")["data"], "Sin actualizaciones")
     slug = urllib.parse.quote(manga["slug"], safe="")
     require(p.get(base + f"/api/series/{slug}?type=comic", "ficha")["data"]["name"], "Sin título en ficha")
-    chapters = p.get(f"https://panel.olympusxyz.com/api/series/{slug}/chapters?page=1&direction=desc&type=comic", "primera página de capítulos")["data"]
+    chapters = p.get(base + f"/api/series/{slug}/chapters?page=1&direction=desc&type=comic", "primera página de capítulos")["data"]
     chapter = require(chapters, "Sin capítulos públicos")[0]
-    pages = p.get(base + f"/api/capitulo/comic-{slug}/{chapter['id']}", "páginas del capítulo")["chapter"]["pages"]
+    from bs4 import BeautifulSoup
+    reader_url = base + f"/capitulo/{chapter['id']}/comic-{slug}"
+    reader = BeautifulSoup(p.get(reader_url, "lector del capítulo", raw_html=True), "html.parser")
+    pages = [urllib.parse.urljoin(reader_url, img["src"]) for img in reader.select("main.strip div.panel > img[src]")]
     p.pages(pages)
 
 

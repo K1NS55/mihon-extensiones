@@ -163,3 +163,25 @@ Evidencia: [HTTP_MANHWAWEB_UPDATE.json](HTTP_MANHWAWEB_UPDATE.json).
 Compilación y lint correctos; 8 pruebas del publicador pasaron. APK 1.6.14 firmado
 con la clave original, mismo ID de fuente y paquete; las otras cuatro entradas
 del índice y sus APK se conservan. Pendiente probar la actualización en el teléfono.
+
+## Actualización de Olympus Scanlation 1.6.1
+
+La lista de capítulos aún usaba el subdominio `panel`, que devuelve HTTP 520,
+aunque el catálogo público funciona. Ahora se consulta `/api/series/{slug}/chapters`
+en el dominio activo. Las imágenes se obtienen del lector HTML con el selector
+`main.strip div.panel > img`, como hace la implementación mantenida de Keiyoushi,
+en lugar del antiguo endpoint de páginas. Se conserva la búsqueda automática
+del dominio y la limitación de peticiones. Una página vacía inesperada interrumpe
+la actualización con error en lugar de repetir peticiones indefinidamente.
+
+Caso informado por el usuario: **El Chetado (Overgeared)**, ID 178.
+Se comprobaron ficha, búsqueda, 345 registros de capítulos en 9 páginas sin
+duplicados, último capítulo 343 y sus 35 URLs de imágenes. El dominio activo
+obtenido desde `olympus.pages.dev` era `olympusbiblioteca.com`; el dominio anterior
+también respondió a las rutas públicas. El CDN devolvió HTTP 403 desde Cloud,
+incluso con Referer y Origin: la descarga de imágenes necesita prueba en teléfono.
+Informe: [HTTP_OLYMPUS_UPDATE.json](HTTP_OLYMPUS_UPDATE.json).
+
+Compilación y lint correctos; 8 pruebas del publicador pasaron. Se mantienen
+paquete, ID de fuente, IDs de obras/capítulos y certificado. No requiere migrar
+la biblioteca. Las otras cuatro extensiones conservan sus APK y versiones.

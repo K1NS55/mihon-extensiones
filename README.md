@@ -61,7 +61,7 @@ source /workspace/toolchains/activate.sh
 bash scripts/build.sh
 ./gradlew --no-daemon --max-workers=4 :core:testDebugUnitTest :core:lintRelease :lib:i18n:lintRelease
 python3 -m unittest discover -s tests -v
-python3 scripts/smoke_sources.py
+/workspace/.venvs/mihon-smoke/bin/python scripts/smoke_sources.py
 /workspace/.venvs/mihon-smoke/bin/python scripts/smoke_html_sources.py leercapitulo
 ```
 
