@@ -12,7 +12,7 @@
         "name": "Olympus Scanlation",
         "packageName": "eu.kanade.tachiyomi.extension.k1ns55.es.olympusscanlation",
         "resources": {
-          "apkUrl": "https://raw.githubusercontent.com/K1NS55/mihon-extensiones/repo/apk/tachiyomi-k1ns55.es.olympusscanlation-v1.6.1.apk",
+          "apkUrl": "https://raw.githubusercontent.com/K1NS55/mihon-extensiones/5f0a30948c39b62d069bf78c82e9a9afe0382eb7/apk/tachiyomi-k1ns55.es.olympusscanlation-v1.6.1.apk",
           "iconUrl": "https://raw.githubusercontent.com/K1NS55/mihon-extensiones/repo/icon/eu.kanade.tachiyomi.extension.k1ns55.es.olympusscanlation.png"
         },
         "extensionLib": "1.6",
