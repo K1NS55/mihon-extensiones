@@ -1,0 +1,17 @@
+{
+  "status": "passed_http_sample",
+  "timestamp_utc": "2026-10-23T03:45:54.791413+00:00",
+  "checks_passed": [
+    "dominio",
+    "populares",
+    "actualizaciones",
+    "búsqueda por título",
+    "ficha y capítulos",
+    "2 versiones de capítulos publicados",
+    "páginas del capítulo",
+    "extracción de 34 URLs de imágenes",
+    "solicitud de primera imagen",
+    "primera imagen con tipo de contenido válido"
+  ],
+  "observations": []
+}

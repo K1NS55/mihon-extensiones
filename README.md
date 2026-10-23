@@ -6,7 +6,7 @@ Repositorio de **K1NS55**, limitado a un máximo de diez extensiones. Incluye ú
 | --- | --- | --- |
 | Olympus Scanlation | https://olympusxyz.com/ | Español |
 | MangaDex | https://mangadex.org/ | Multilingüe, incluidos español y español latinoamericano |
-| ManhwaWeb | https://manhwaweb.com/ | Español; algunas obras ofrecen capítulos RAW |
+| ManhwaWeb | https://manhwaweb.com/ | Español; versiones de los grupos disponibles |
 | LeerCapitulo | https://www.leercapitulo.co/ | Español |
 | Imperio Manhwa | https://imperiomanhwa.com/ | Español |
 

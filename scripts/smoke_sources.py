@@ -98,7 +98,7 @@ def mangadex(p):
 
 def manhwaweb(p):
     p.get("https://manhwaweb.com", "dominio", False)
-    api = "https://manhwawebbackend-production.up.railway.app"
+    api = "https://api.manhwaweb.com"
     popular = p.get(api + "/manhwa/nuevos", "populares")["top"]
     require(popular["manhwas_esp"] or popular["manhwas_raw"], "Sin populares")
     latest = p.get(api + "/latest/new-manhwa", "actualizaciones")["manhwas"]["manhwas_esp"]
@@ -109,8 +109,10 @@ def manhwaweb(p):
     slug = urllib.parse.quote(found[0]["real_id"], safe="")
     details = p.get(api + f"/manhwa/see/{slug}", "ficha y capítulos")
     require(details["name_esp"], "Ficha sin título")
+    require(isinstance(details["autor"], list) and isinstance(details["artista"], list), "Créditos inválidos")
     chapters = sorted(details["chapters"], key=lambda c: float(c["chapter"]), reverse=True)
-    links = [c.get("link") or next((v.get("link") for v in c.get("versions", []) if v.get("link")), None) for c in chapters]
+    links = [v["link"] for c in chapters for v in c["versions"] if v.get("create") is not None]
+    p.passed.append(f"{len(links)} versiones de capítulos publicados")
     link = next(link for link in links if link)
     chapter_slug = link.replace(details["_id"], details["real_id"]).rstrip("/").split("/")[-1]
     pages = p.get(api + "/chapters/see/" + urllib.parse.quote(chapter_slug, safe=""), "páginas del capítulo")["chapter"]["img"]

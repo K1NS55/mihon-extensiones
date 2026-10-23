@@ -145,3 +145,21 @@ sin duplicados; lector con 10 imágenes y descarga verificada de las imágenes 1
 y 10. Informe: [HTTP_IMPERIOMANHWA.json](HTTP_IMPERIOMANHWA.json).
 Las 8 pruebas del publicador también pasaron. Los cuatro APK anteriores conservan
 sus versiones, bytes, firma y URLs de descarga.
+
+## Actualización de ManhwaWeb 1.6.14
+
+El sitio migró su API a `https://api.manhwaweb.com` y cambió el esquema:
+los créditos usan `autor`/`artista` y los capítulos contienen `versions` con los
+enlaces, fechas y grupos. La fuente anterior consultaba Railway y esperaba
+`_extras` y `create` en el capítulo, campos que ya no existen.
+Se adaptó la implementación mantenida de Keiyoushi conservando paquete, ID de
+fuente y firma. Se incluyen las versiones publicadas de cada capítulo y se
+omiten las que todavía no tienen fecha. No requiere migrar la biblioteca.
+
+Sondeo real: populares, actualizaciones, búsqueda, ficha, versiones de capítulos,
+34 URLs de imágenes y descarga de la primera imagen correctos.
+Evidencia: [HTTP_MANHWAWEB_UPDATE.json](HTTP_MANHWAWEB_UPDATE.json).
+
+Compilación y lint correctos; 8 pruebas del publicador pasaron. APK 1.6.14 firmado
+con la clave original, mismo ID de fuente y paquete; las otras cuatro entradas
+del índice y sus APK se conservan. Pendiente probar la actualización en el teléfono.
